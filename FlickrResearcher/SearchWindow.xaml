@@ -1,0 +1,105 @@
+﻿<Controls:MetroWindow xmlns:FlickrResearcher="clr-namespace:FlickrResearcher"  x:Class="FlickrResearcher.SearchWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+                              xmlns:classicTheme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Classic"
+
+        Title="Search Window" Height="508" Width="709">
+
+
+    <Controls:MetroWindow.Resources>
+        <Style TargetType="{x:Type ListBox}">
+            <Setter Property="ItemsPanel">
+                <Setter.Value>
+                    <ItemsPanelTemplate>
+                        <WrapPanel>
+                        </WrapPanel>
+                    </ItemsPanelTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="ItemTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <WrapPanel>
+                            <FlickrResearcher:FlickrImageControl/>
+                        </WrapPanel>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
+        </Style>
+
+
+        <Style x:Key="basicButton" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" />
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
+            <Setter Property="BorderBrush" Value="{x:Static classicTheme:ClassicBorderDecorator.ClassicBorderBrush}" />
+            <Setter Property="BorderThickness" Value="3" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <classicTheme:ClassicBorderDecorator x:Name="ContentContainer" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0" BorderStyle="None" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                        </classicTheme:ClassicBorderDecorator>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsKeyboardFocused" Value="True">
+                                <Setter Property="BorderStyle" TargetName="ContentContainer" Value="RaisedFocused"/>
+                            </Trigger>
+                            <Trigger Property="IsDefaulted" Value="True">
+                                <Setter Property="BorderStyle" TargetName="ContentContainer" Value="RaisedFocused"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="BorderStyle" TargetName="ContentContainer" Value="RaisedPressed"/>
+                            </Trigger>
+                            <Trigger Property="ToggleButton.IsChecked" Value="True">
+                                <Setter Property="BorderStyle" TargetName="ContentContainer" Value="RaisedPressed"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="closeButton" BasedOn="{StaticResource basicButton}" TargetType="Button">
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Cursor" Value="Hand" />
+        </Style>
+
+    </Controls:MetroWindow.Resources>
+
+    <Grid>
+        <TextBox x:Name="txtSearch" HorizontalAlignment="Left" Height="23" Margin="183,19,0,0" TextWrapping="Wrap" Text="GreenPavel" VerticalAlignment="Top" Width="420"/>
+        <Button x:Name="btnSearch" Content="Search" HorizontalAlignment="Left" Margin="608,20,0,0" VerticalAlignment="Top" Width="83" Click="btnSearch_Click"/>
+
+        <ListBox x:Name="listBoxImages" ItemsSource="{Binding}" Margin="10,131,10,41" Background="#FFF3FDFD" SelectionChanged="listBoxImages_SelectionChanged"/>
+
+        <TextBlock HorizontalAlignment="Left" Margin="80,20,0,0" FontSize="16" TextWrapping="Wrap" Text="Search image:" VerticalAlignment="Top"/>
+        <Separator Height="24" Margin="10,105,10,0" VerticalAlignment="Top"/>
+
+        <Border BorderBrush="#FF9292FF" CornerRadius="5" BorderThickness="1" Height="55" Margin="10,50,10,0"
+                VerticalAlignment="Top">
+            <Grid>
+                <TextBlock Margin="0,0,0,28" TextAlignment="Center" FontSize="14"><Run Text="Search settings"/></TextBlock>
+                <RadioButton x:Name="radioUserPhotos" Content="Search by Username" Checked="radioUserPhotos_Checked" HorizontalAlignment="Left" VerticalAlignment="Top" Width="131" Margin="10,22,0,0"/>
+                <RadioButton x:Name="radioTagPhotos" Content="Search by tag" HorizontalAlignment="Left" VerticalAlignment="Top" Width="113" Margin="155,22,0,0" Checked="radioTagPhotos_Checked"/>
+
+                <TextBlock x:Name="txtCount" Visibility="Collapsed" Text="Count images: " Margin="273,26,324,10"></TextBlock>
+                <TextBox x:Name="txtCountImages" Visibility="Collapsed" HorizontalAlignment="Left" Height="23" Margin="360,22,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="41"/>
+            </Grid>
+        </Border>
+        <StackPanel Orientation="Horizontal" Margin="10,441,10,10">
+            <TextBlock x:Name="txtUrlImage" FontSize="14" FontStyle="Italic"/>
+            <Button x:Name="btnOpenInBrowser" Visibility="Collapsed" Content="Open in browser" Margin="20,0,0,0"/>
+        </StackPanel>
+
+        <Button x:Name="btnBack" Style="{StaticResource basicButton}" Background="Transparent" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="50" Height="38" Click="btnBack_Click">
+            <Image Source="media/MB__back.png" Width="47"/>
+        </Button>
+
+
+    </Grid>
+</Controls:MetroWindow>

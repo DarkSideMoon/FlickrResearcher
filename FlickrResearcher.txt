@@ -1,0 +1,26 @@
+Flickr Researccher: 
+This is FlickrResearcher. Programm that helps you to search different images in flickr. 
+User can search images by user name and tag.
+- Told about user control 
+- Told about mood window (that you can choose your mood today and programm load images )
+
+Flickr Researccher Library: 
+- Have flickr image class. To load image and info about (them)?
+- Flickr Manager have method that create connection with Flickr
+- Flickr Client have implementation of difference methods that help to work with Flickr. 
+
+Testing query speeding in Milisecunds. 
+- Test thread
+- Test task 
+- Test dispatcher timer. 
+---- Little bit told about theirs techologies and about new thread (STA)
+- Told about writing to Analiz.txt file to compare results of tests. 
+
+- Told about using algorithms that used in programm.
+- That you load in queue 10 images and that go to view them after that load another 10 images and etc.
+
+Design. 
+In programm was used metro UI, that give cool windows and controls. I think UI is good :)
+
+
+You should only insert your ApiKey and Secret. You 
