@@ -1,0 +1,6 @@
+language: csharp
+solution: FlickrResearcher.sln
+install:
+  - nuget restore FlickrResearcher.sln
+script:
+  - xbuild /p:Configuration=Debug FlickrResearcher.sln
