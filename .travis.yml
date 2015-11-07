@@ -4,3 +4,4 @@ install:
   - nuget restore FlickrResearcher.sln
 script:
   - xbuild /p:Configuration=Debug FlickrResearcher.sln
+  #FlickrResearcher.sln
